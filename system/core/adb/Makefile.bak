@@ -1,0 +1,106 @@
+#ADB tool for the Raspberry Pi and similar environments not supported by the Android SDK.
+#based on https://gist.github.com/splhack/958335
+ 
+#This is a very simple hack for building adb on its own, using a lot of stock Linux libraries (libssl, libcrypt) 
+#in place of the versions shipped with AOSP, in order to avoid having to pull down a lot of code.
+ 
+#git clone https://android.googlesource.com/platform/system/core system/core
+ 
+#The method below does not work with the most recent version (you will see const char* conversion errors
+#as a C file has been changed to a CPP one where that is more strict).  However, it _can_ be made to work
+#with an adb version new enough to support security, if we revert the tree
+ 
+#The following state of the tree was not chosen with care; it just happened to be what was on the machine
+#where I first tried this, and it worked.  Other versions may or may not work
+ 
+#cd system/core/adb
+#git reset caed3d9fae1fd372dfa01cb60fbf157233c9052e
+ 
+#copy this Makefile into that directory, ie, system/core/adb/Makefile
+
+
+#NOTE 
+# 1.
+# Use toolchain version 4.6 or later 
+# with toolchain 4.4 with have problem "nulptr" when compile 
+# pdevent.cpp 
+
+#make 
+ 
+SRCS+= adb.c
+SRCS+= console.c
+SRCS+= transport.c
+SRCS+= transport_local.c
+SRCS+= transport_usb.c
+SRCS+= commandline.c
+SRCS+= adb_client.c
+SRCS+= adb_auth_host.c 
+SRCS+= sockets.c
+SRCS+= services.c
+SRCS+= file_sync_client.c
+SRCS+= fdevent.c
+SRCS+= get_my_path_linux.c
+SRCS+= usb_linux.c
+#SRCS+= usb_vendors.c
+#SRCS+= utils.c
+ 
+VPATH+= ../libcutils
+#SRCS+= abort_socket.c
+SRCS+= socket_inaddr_any_server.c
+SRCS+= socket_local_client.c
+SRCS+= socket_local_server.c
+SRCS+= socket_loopback_client.c
+SRCS+= socket_loopback_server.c
+SRCS+= socket_network_client.c
+ 
+VPATH+= ../libzipfile
+SRCS+= centraldir.c
+SRCS+= zipfile.c
+ 
+#VPATH+= ../../../external/zlib
+#SRCS+= adler32.c
+#SRCS+= compress.c
+#SRCS+= crc32.c
+#SRCS+= deflate.c
+#SRCS+= infback.c
+#SRCS+= inffast.c
+#SRCS+= inflate.c
+#SRCS+= inftrees.c
+#SRCS+= trees.c
+#SRCS+= uncompr.c
+#SRCS+= zutil.c
+ 
+VPATH+=../libcutils
+SRCS+=load_file.c
+CPPFLAGS+= -std=c++0x -fpermissive
+CPPFLAGS+= -DADB_HOST=1
+CPPFLAGS+= -DHAVE_FORKEXEC=1
+CPPFLAGS+= -DHAVE_SYMLINKS
+CPPFLAGS+= -DHAVE_TERMIO_H
+CPPFLAGS+= -D_GNU_SOURCE
+CPPFLAGS+= -D_XOPEN_SOURCE
+CPPFLAGS+= -I.
+CPPFLAGS+= -I../include
+CPPFLAGS+= -I../openssl/include
+CPPFLAGS+= -I../../../external/openssl/include
+CPPFLAGS+= -I../../../external/zlib
+ 
+CFLAGS+= -O2 -g -Wall -Wno-unused-parameter
+LDFLAGS= -static
+LIBS= -lrt -lpthread -lcrypto -lssl -lz
+ 
+#TOOLCHAIN=/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/bin/arm-none-linux-gnueabi-
+TOOLCHAIN=arm-linux-gnueabi-
+CC= $(TOOLCHAIN)gcc
+CXX= $(TOOLCHAIN)g++
+LD= $(TOOLCHAIN)g++
+ 
+OBJS= $(SRCS:.c=.o)
+ 
+all: adb
+ 
+adb: $(OBJS)
+	$(LD) -o $@ $(LDFLAGS) $(OBJS) $(LIBS)
+ 
+clean:
+	rm -rf $(OBJS)

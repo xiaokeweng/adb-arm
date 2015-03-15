@@ -1,0 +1,67 @@
+SRCS+= protocol.c
+SRCS+= engine.c
+SRCS+= bootimg.c
+SRCS+= fastboot.c
+SRCS+= usb_linux.c
+SRCS+= util_linux.c
+
+VPATH+= ../libzipfile
+SRCS+= centraldir.c
+SRCS+= zipfile.c
+
+VPATH+= ../libsparse
+SRCS+= backed_block.c
+SRCS+= output_file.c
+SRCS+= sparse.c
+SRCS+= sparse_crc32.c
+SRCS+= sparse_err.c
+SRCS+= sparse_read.c
+
+VPATH+= ../../extras/ext4_utils
+SRCS+= allocate.c
+SRCS+= contents.c
+SRCS+= ext4_utils.c
+SRCS+= extent.c
+SRCS+= indirect.c
+SRCS+= make_ext4fs.c
+SRCS+= sha1.c
+SRCS+= uuid.c
+SRCS+= wipe.c
+
+CPPFLAGS+= -DADB_HOST=1
+CPPFLAGS+= -DHAVE_FORKEXEC=1
+CPPFLAGS+= -DHAVE_SYMLINKS
+CPPFLAGS+= -DHAVE_TERMIO_H
+CPPFLAGS+= -D_GNU_SOURCE
+CPPFLAGS+= -D_XOPEN_SOURCE
+CPPFLAGS+= -I.
+CPPFLAGS+= -I../include
+CPPFLAGS+= -I../libsparse/include
+CPPFLAGS+= -I../mkbootimg
+CPPFLAGS+= -I../../extras/ext4_utils
+CPPFLAGS+= -I../../../external/zlib
+CPPFLAGS+= -I../../../external/libselinux/include
+
+
+CFLAGS+= $(RPM_OPT_FLAGS)
+CFLAGS += -std=gnu99
+LIBS= -lrt -lpthread -lz -lselinux "-L/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib"
+
+
+TOOLCHAIN=/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/bin/arm-fsl-linux-gnueabi-
+
+CC= $(TOOLCHAIN)gcc
+LD= $(TOOLCHAIN)gcc
+
+OBJS= $(SRCS:.c=.o)
+
+all: fastboot
+
+fastboot: $(OBJS)
+	$(LD) -o $@ $(LDFLAGS) $(OBJS) $(LIBS)
+
+install: fastboot
+	install fastboot $(DESTDIR)$(BINDIR)
+
+clean:
+	rm -rf $(OBJS)
