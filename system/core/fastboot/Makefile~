@@ -5,6 +5,8 @@ SRCS+= bootimg.c
 SRCS+= fastboot.c
 SRCS+= usb_linux.c
 SRCS+= util_linux.c
+SRCS+= util.c 
+SRCS+= fs.c
 
 VPATH+= ../../../external/zlib/src
 SRCS+= adler32.c 
@@ -96,6 +98,13 @@ VPATH+= ../libzipfile
 SRCS+= centraldir.c
 SRCS+= zipfile.c
  
+VPATH+= ../../extras/f2fs_utils
+SRCS+= f2fs_utils.c
+SRCS+= f2fs_dlutils.c
+
+
+
+
 CPPFLAGS+= -DHOST
 CPPFLAGS+= -DADB_HOST=1
 CPPFLAGS+= -DHAVE_FORKEXEC=1
@@ -109,15 +118,24 @@ CPPFLAGS+= -I../include
 CPPFLAGS+= -I../mkbootimg
 CPPFLAGS+= -I../libsparse/include
 CPPFLAGS+= -I../../extras/ext4_utils
+CPPFLAGS+= -I../../extras/f2fs_utils
 CPPFLAGS+= -I../../../external/zlib
 CPPFLAGS+= -I../../../external/openssl/include
 CPPFLAGS+= -I../../../external/libselinux/include
 CPPFLAGS+= -I../../../external/pcre-8.36
+CPPFLAGS+= -I../../../external/f2fs-tools/include
+CPPFLAGS+= -I../../../external/f2fs-tools/mkfs/
+
 
 CFLAGS += -std=gnu99 
+CFLAGS += -DUSE_F2FS
 CFLAGS+= -O2 -g -Wall -Wno-unused-parameter 
 
+LIBS= -lpthread -lrt -lc "-L/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib" -lpcre
+
 TOOLCHAIN=/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/bin/arm-fsl-linux-gnueabi-
+
+#TOOLCHAIN= /opt/poky/1.5/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-
 
 CC= $(TOOLCHAIN)gcc
 LD= $(TOOLCHAIN)gcc

@@ -9,4 +9,4 @@ Name: libpcre16
 Description: PCRE - Perl compatible regular expressions C library with 16 bit character support
 Version: 8.36
 Libs: -L${libdir} -lpcre16
-Cflags: -I${includedir} 
+Cflags: -I${includedir} -DPCRE_STATIC

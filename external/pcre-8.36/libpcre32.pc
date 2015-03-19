@@ -9,4 +9,4 @@ Name: libpcre32
 Description: PCRE - Perl compatible regular expressions C library with 32 bit character support
 Version: 8.36
 Libs: -L${libdir} -lpcre32
-Cflags: -I${includedir} 
+Cflags: -I${includedir} -DPCRE_STATIC

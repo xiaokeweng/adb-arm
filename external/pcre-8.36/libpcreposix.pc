@@ -9,5 +9,5 @@ Name: libpcreposix
 Description: PCREPosix - Posix compatible interface to libpcre
 Version: 8.36
 Libs: -L${libdir} -lpcreposix
-Cflags: -I${includedir} 
+Cflags: -I${includedir} -DPCRE_STATIC
 Requires.private: libpcre
