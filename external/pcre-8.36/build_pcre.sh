@@ -36,7 +36,7 @@ LDFLAGS_DEP="-lc"
 
 # CFLAGS="-march=armv5t -marm -mlittle-endian -mglibc -static -I${INSTALL_PREFIX}/include"
 LDFLAGS="-L${INSTALL_PREFIX}/lib"
-./configure --prefix=${TOOL_PREFIX} --with-sysroot --target=arm-none-linux-gnueabi --host=x86_64
+./configure --prefix=${INSTALL_PREFIX}cd --with-sysroot --target=arm-none-linux-gnueabi --host=x86_64
 make -j4
 sudo make install;
 cd -;

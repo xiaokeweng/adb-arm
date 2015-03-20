@@ -5,10 +5,10 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname='libpcreposix.so.0'
+dlname=''
 
 # Names of this library.
-library_names='libpcreposix.so.0.0.3 libpcreposix.so.0 libpcreposix.so'
+library_names=''
 
 # The name of the static archive.
 old_library='libpcreposix.a'
@@ -17,7 +17,7 @@ old_library='libpcreposix.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' /home/kevin/Working/ElinkMe/work/external/pcre-8.36/libpcre.la'
+dependency_libs=' /home/kevin/Working/ElinkMe/adb_fastboot/external/pcre-8.36/libpcre.la'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,5 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib'
-relink_command="(cd /home/kevin/Working/ElinkMe/work/external/pcre-8.36; /bin/bash /home/kevin/Working/ElinkMe/work/external/pcre-8.36/libtool  --silent --tag CC --mode=relink arm-fsl-linux-gnueabi-gcc -fvisibility=hidden -g -O2 -version-info 0:3:0 -o libpcreposix.la -rpath /opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib libpcreposix_la-pcreposix.lo libpcre.la @inst_prefix_dir@)"
+libdir='/home/kevin/Working/ElinkMe/adb_fastboot/external/pcre-8.36/compiled/armv5te/lib'

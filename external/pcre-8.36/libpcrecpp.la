@@ -5,10 +5,10 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname='libpcrecpp.so.0'
+dlname=''
 
 # Names of this library.
-library_names='libpcrecpp.so.0.0.1 libpcrecpp.so.0 libpcrecpp.so'
+library_names=''
 
 # The name of the static archive.
 old_library='libpcrecpp.a'
@@ -17,7 +17,7 @@ old_library='libpcrecpp.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' /home/kevin/Working/ElinkMe/work/external/pcre-8.36/libpcre.la /opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/bin/../arm-fsl-linux-gnueabi/multi-libs/lib/libstdc++.la'
+dependency_libs=' /home/kevin/Working/ElinkMe/adb_fastboot/external/pcre-8.36/libpcre.la /opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/bin/../arm-fsl-linux-gnueabi/multi-libs/lib/libstdc++.la'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,5 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib'
-relink_command="(cd /home/kevin/Working/ElinkMe/work/external/pcre-8.36; /bin/bash /home/kevin/Working/ElinkMe/work/external/pcre-8.36/libtool  --silent --tag CXX --mode=relink arm-fsl-linux-gnueabi-g++ -fvisibility=hidden -fvisibility-inlines-hidden -O2 -version-info 0:1:0 -o libpcrecpp.la -rpath /opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib libpcrecpp_la-pcrecpp.lo libpcrecpp_la-pcre_scanner.lo libpcrecpp_la-pcre_stringpiece.lo libpcre.la @inst_prefix_dir@)"
+libdir='/home/kevin/Working/ElinkMe/adb_fastboot/external/pcre-8.36/compiled/armv5te/lib'

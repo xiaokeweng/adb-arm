@@ -5,10 +5,10 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname='libpcre.so.1'
+dlname=''
 
 # Names of this library.
-library_names='libpcre.so.1.2.4 libpcre.so.1 libpcre.so'
+library_names=''
 
 # The name of the static archive.
 old_library='libpcre.a'
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib'
+libdir='/home/kevin/Working/ElinkMe/adb_fastboot/external/pcre-8.36/compiled/armv5te/lib'

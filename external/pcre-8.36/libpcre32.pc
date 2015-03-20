@@ -1,6 +1,6 @@
 # Package Information for pkg-config
 
-prefix=/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi
+prefix=/home/kevin/Working/ElinkMe/adb_fastboot/external/pcre-8.36/compiled/armv5te
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
