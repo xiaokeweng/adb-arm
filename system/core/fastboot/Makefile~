@@ -29,6 +29,7 @@ VPATH+= ../../extras/ext4_utils
 SRCS+= make_ext4fs.c 
 SRCS+= ext4fixup.c 
 SRCS+= ext4_utils.c 
+SRCS+= ext4_sb.c
 SRCS+= allocate.c 
 SRCS+= contents.c
 SRCS+= extent.c 
@@ -101,6 +102,7 @@ SRCS+= zipfile.c
 VPATH+= ../../extras/f2fs_utils
 SRCS+= f2fs_utils.c
 SRCS+= f2fs_dlutils.c
+SRCS+= f2fs_ioutils.c
 
 
 

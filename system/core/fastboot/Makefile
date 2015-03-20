@@ -29,6 +29,7 @@ VPATH+= ../../extras/ext4_utils
 SRCS+= make_ext4fs.c 
 SRCS+= ext4fixup.c 
 SRCS+= ext4_utils.c 
+SRCS+= ext4_sb.c
 SRCS+= allocate.c 
 SRCS+= contents.c
 SRCS+= extent.c 
@@ -101,6 +102,7 @@ SRCS+= zipfile.c
 VPATH+= ../../extras/f2fs_utils
 SRCS+= f2fs_utils.c
 SRCS+= f2fs_dlutils.c
+SRCS+= f2fs_ioutils.c
 
 
 
@@ -131,7 +133,7 @@ CFLAGS += -std=gnu99
 CFLAGS += -DUSE_F2FS
 CFLAGS+= -O2 -g -Wall -Wno-unused-parameter 
 
-LIBS= -lpthread -lrt -lc "-L/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib" -lpcre
+LIBS= -lpthread -lrt -lc "-L/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/lib" -lpcre -ldl
 
 TOOLCHAIN=/opt/freescale/usr/local/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/bin/arm-fsl-linux-gnueabi-
 
