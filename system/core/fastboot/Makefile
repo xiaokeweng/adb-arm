@@ -125,8 +125,8 @@ CPPFLAGS+= -I../../../external/zlib
 CPPFLAGS+= -I../../../external/openssl/include
 CPPFLAGS+= -I../../../external/libselinux/include
 CPPFLAGS+= -I../../../external/pcre-8.36
-CPPFLAGS+= -I../../../external/f2fs-tools/include
-CPPFLAGS+= -I../../../external/f2fs-tools/mkfs/
+CPPFLAGS+= -I../../../external/f2fs-tools_src/include
+CPPFLAGS+= -I../../../external/f2fs-tools_src/mkfs/
 
 
 CFLAGS += -std=gnu99 
